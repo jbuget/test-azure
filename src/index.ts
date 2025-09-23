@@ -2,6 +2,8 @@ import fastify from 'fastify'
 import { Contact } from './Contact';
 import prisma from './prisma';
 
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+
 const server = fastify()
 
 server.get('/contacts', async () => {
@@ -92,7 +94,7 @@ server.put('/contacts/:id', async (request, reply) => {
     }
 });
 
-server.listen({ port: 3000 }, (err, address) => {
+server.listen({ port: PORT }, (err, address) => {
     if (err) {
         console.error(err)
         process.exit(1)
