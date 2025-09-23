@@ -8,7 +8,10 @@
     "dev": "tsx watch src/index.ts",
     "lint": "eslint 'src/**/*.{ts,js}'",
     "format": "prettier --write .",
-    "start": "prisma generate && prisma migrate deploy && npm run build && node dist/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "start": "prisma:generate && prisma:migrate && npm run build && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
