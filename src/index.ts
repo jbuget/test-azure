@@ -7,7 +7,7 @@ import prisma from './prisma'
 dotenv.config()
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
-const HOST = process.env.HOST || 'localhost';
+const HOST = process.env.HOST || '0.0.0.0';
 
 const server = fastify()
 
