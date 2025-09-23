@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv'
 
-import fastify from 'fastify';
-import { Contact } from './Contact';
-import prisma from './prisma';
+import fastify from 'fastify'
+import { Contact } from './Contact'
+import prisma from './prisma'
 
 dotenv.config()
 
@@ -111,9 +111,9 @@ server.put('/contacts/:id', async (request, reply) => {
 });
 
 server.listen({ port: PORT, host: HOST }, (err, address) => {
-    if (err) {
-        console.error(err)
-        process.exit(1)
-    }
-    console.log(`Server listening at ${address}`)
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  }
+  console.log(`Server listening at ${address}`)
 })

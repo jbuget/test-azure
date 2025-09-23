@@ -12,7 +12,8 @@
     "prisma:migrate": "npx prisma migrate dev --config=./prisma.config.ts",
     "prisma:deploy": "node node_modules/prisma/build/index.js migrate deploy --config=./prisma.config.ts",
     "prisma:studio": "prisma studio",
-    "start": "npm run prisma:deploy && node dist/index.js"
+    "prestart": "npm run prisma:deploy",
+    "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
