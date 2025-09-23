@@ -1,10 +1,17 @@
-import fastify from 'fastify'
+import fastify from 'fastify';
 import { Contact } from './Contact';
 import prisma from './prisma';
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+const HOST = process.env.HOST || 'localhost';
 
 const server = fastify()
+
+server.register(import('fastify-healthcheck'));
+
+server.get('/', async () => {
+    return { message: 'Welcome to the Contacts API' };
+});
 
 server.get('/contacts', async () => {
     const contacts: Contact[] = (await prisma.contact.findMany()).map((c: any) => new Contact(
@@ -77,7 +84,12 @@ server.put('/contacts/:id', async (request, reply) => {
     };
 
     try {
-        const data: any = {};
+        const data: {
+            firstName?: string;
+            lastName?: string;
+            phoneNumber?: string;
+            email?: string;
+        } = {};
         if (firstName !== undefined) data.firstName = firstName;
         if (lastName !== undefined) data.lastName = lastName;
         if (phoneNumber !== undefined) data.phoneNumber = phoneNumber;
@@ -94,7 +106,7 @@ server.put('/contacts/:id', async (request, reply) => {
     }
 });
 
-server.listen({ port: PORT }, (err, address) => {
+server.listen({ port: PORT, host: HOST }, (err, address) => {
     if (err) {
         console.error(err)
         process.exit(1)
