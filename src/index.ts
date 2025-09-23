@@ -1,6 +1,10 @@
+import * as dotenv from 'dotenv'
+
 import fastify from 'fastify';
 import { Contact } from './Contact';
 import prisma from './prisma';
+
+dotenv.config()
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const HOST = process.env.HOST || 'localhost';

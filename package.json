@@ -10,9 +10,9 @@
     "format": "prettier --write .",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
     "prisma:studio": "prisma studio",
-    "start": "prisma:generate && prisma:migrate && npm run build && node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run prisma:deploy && node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -43,6 +43,7 @@
   "dependencies": {
     "@prisma/client": "^6.16.2",
     "@prisma/extension-accelerate": "^2.0.2",
+    "dotenv": "^17.2.2",
     "fastify": "^5.6.1",
     "fastify-healthcheck": "^5.1.0"
   }
