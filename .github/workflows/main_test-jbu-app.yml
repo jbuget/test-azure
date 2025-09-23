@@ -62,4 +62,3 @@ jobs:
           app-name: 'test-jbu-app'
           slot-name: 'Production'
           package: .
-          
