@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv'
 import * as path from 'path'
 
-import ejs from 'ejs'
+import * as ejs from 'ejs'
 import fastify from 'fastify'
 import multipart from '@fastify/multipart'
 import view from '@fastify/view'
