@@ -4,6 +4,34 @@ import prisma from '../../../infrastructure/prisma';
 
 export default async function contactsRoutes(server: FastifyInstance) {
 
+    // Web: GET /contacts — server-side render list
+    server.get('/contacts', async (_req, reply) => {
+        const rows = await prisma.contact.findMany({ orderBy: { id: 'asc' } });
+        const contacts: Contact[] = rows.map((c: any) => new Contact(c.id, c.firstName, c.lastName, c.phoneNumber, c.email, c.createdAt, c.updatedAt));
+        return reply.view('contacts/index.ejs', { contacts });
+    });
+
+    // Web: GET /contact/new — show form (fetch to API on submit)
+    server.get('/contact/new', async (_req, reply) => {
+        return reply.view('contacts/new.ejs');
+    });
+
+    // Web: GET /contact/:id — detail
+    server.get('/contact/:id', async (req, reply) => {
+        const { id } = req.params as { id: string };
+        const contact = await prisma.contact.findUnique({ where: { id: Number(id) } });
+        if (!contact) return reply.code(404).view('contacts/show.ejs', { notFound: true, id });
+        return reply.view('contacts/show.ejs', { contact, notFound: false });
+    });
+
+    // Web: GET /contact/:id/edit — edit form (fetch to API on submit)
+    server.get('/contact/:id/edit', async (req, reply) => {
+        const { id } = req.params as { id: string };
+        const contact = await prisma.contact.findUnique({ where: { id: Number(id) } });
+        if (!contact) return reply.code(404).view('contacts/edit.ejs', { notFound: true, id });
+        return reply.view('contacts/edit.ejs', { contact, notFound: false });
+    });
+
     // GET /api/contacts
     server.get('/api/contacts', async () => {
         const contacts: Contact[] = (await prisma.contact.findMany()).map((c: any) =>

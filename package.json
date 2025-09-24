@@ -28,6 +28,7 @@
   "homepage": "https://github.com/jbuget/test-azure#readme",
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@types/ejs": "^3.1.5",
     "@types/node": "^24.5.2",
     "@typescript-eslint/eslint-plugin": "^8.44.1",
     "@typescript-eslint/parser": "^8.44.1",
@@ -42,11 +43,13 @@
     "typescript-eslint": "^8.44.1"
   },
   "dependencies": {
+    "@fastify/view": "^11.1.1",
     "@prisma/client": "^6.16.2",
     "@prisma/extension-accelerate": "^2.0.2",
-    "prisma": "^6.16.2",
     "dotenv": "^17.2.2",
+    "ejs": "^3.1.10",
     "fastify": "^5.6.1",
-    "fastify-healthcheck": "^5.1.0"
+    "fastify-healthcheck": "^5.1.0",
+    "prisma": "^6.16.2"
   }
 }
