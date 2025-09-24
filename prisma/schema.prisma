@@ -20,6 +20,7 @@ model Contact {
   lastName    String
   phoneNumber String
   email       String
+  photo       String?
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAt DateTime @default(now()) @db.Timestamp(6)
 }

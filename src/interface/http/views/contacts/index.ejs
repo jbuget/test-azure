@@ -33,7 +33,7 @@
       </div>
       <table>
         <thead>
-          <tr><th>Nom</th><th>Téléphone</th><th>Email</th><th></th></tr>
+          <tr><th>Photo</th><th>Nom</th><th>Téléphone</th><th>Email</th><th></th></tr>
         </thead>
         <tbody>
         <% if (!contacts || !contacts.length) { %>
@@ -42,6 +42,11 @@
           <% contacts.forEach(function(c){ %>
             <% const name = (c.firstName||'') + ' ' + (c.lastName||''); %>
             <tr>
+              <td style="width:44px;">
+                <% if (c.photo) { %>
+                  <img src="/media/contacts/<%= c.id %>" alt="photo" style="width:32px;height:32px;object-fit:cover;border-radius:50%;border:1px solid #eee;" />
+                <% } %>
+              </td>
               <td><a href="/contact/<%= c.id %>"><%= name.trim() || '(Sans nom)' %></a></td>
               <td><%= c.phoneNumber || '' %></td>
               <td><%= c.email || '' %></td>

@@ -43,6 +43,8 @@
     "typescript-eslint": "^8.44.1"
   },
   "dependencies": {
+    "@azure/storage-blob": "^12.28.0",
+    "@fastify/multipart": "^9.2.1",
     "@fastify/view": "^11.1.1",
     "@prisma/client": "^6.16.2",
     "@prisma/extension-accelerate": "^2.0.2",
